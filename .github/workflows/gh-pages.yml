@@ -22,7 +22,7 @@ jobs:
       - name: Setup build deps
         run: |
           apt-get update
-          apt-get install -y curl
+          apt-get install -y curl git
           curl --header "DEPLOY-TOKEN: ${{ secrets.RAUDFINN_M2M }}" \
                --location \
                "https://gitlab.sintef.no/api/v4/projects/19521/packages/generic/webpage/latest/raudfinn-web.tar" \
