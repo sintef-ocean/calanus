@@ -1,0 +1,38 @@
+name: GitHub pages
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+env:
+  DEBIAN_FRONTEND: noninteractive
+  TZ: Etc/UTC
+
+jobs:
+  deploy:
+    name: Webpage deploy
+    runs-on: ubuntu-24.04
+    container:
+      image: ubuntu:24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Setup build deps
+        run: |
+          apt-get update
+          apt-get install -y curl
+          curl --header "DEPLOY-TOKEN: ${{ secrets.RAUDFINN_M2M }}" \
+               --location \
+               "https://gitlab.sintef.no/api/v4/projects/19521/packages/generic/webpage/latest/raudfinn-web.tar" \
+               --output raudfinn-web.tar
+          tar -xf raudfinn-web.tar
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v4
+        if: github.ref == 'refs/heads/main'
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+          publish_branch: gh-pages
+          cname: calanus.sintef.io
