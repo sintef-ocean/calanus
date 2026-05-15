@@ -1,3 +1,3 @@
-import{aN as r,aO as i,aP as c,aQ as d,aR as l}from"./index-BI6u_ka-.js";import"./leaflet-CYx1M_cZ.js";/*!
+import{aN as r,aO as i,aP as c,aQ as d,aR as l}from"./index-B6NJwWgQ.js";import"./leaflet-CYx1M_cZ.js";/*!
  * (C) Ionic http://ionicframework.com - MIT License
  */const w=()=>{const e=window;e.addEventListener("statusTap",()=>{r(()=>{const o=e.innerWidth,s=e.innerHeight,n=document.elementFromPoint(o/2,s/2);if(!n)return;const t=i(n);t&&new Promise(a=>c(t,a)).then(()=>{d(async()=>{t.style.setProperty("--overflow","hidden"),await l(t,300),t.style.removeProperty("--overflow")})})})})};export{w as startStatusTap};
